@@ -11,24 +11,26 @@ public class ball : MonoBehaviour
     float hitLocation(Vector2 ballPos, Vector2 vausPos, float vausWidth){
         return(ballPos.x - vausPos.x) / vausWidth;}
 
-    void Start()
-        {GetComponent<Rigidbody2D>().velocity = Vector2.up * movementSpeed;}
+    void Start(){
+        GetComponent<Rigidbody2D>().velocity = Vector2.up * movementSpeed;
+    }
 
     private void OnCollisionEnter2D(Collision2D other) {
+        hitSound.Play();
+
         if(other.gameObject.name == "vaus"){
             float x = hitLocation(transform.position, other.transform.position, other.collider.bounds.size.x);
             Vector2 direction = new Vector2(x,1).normalized;
             GetComponent<Rigidbody2D>().velocity = direction * movementSpeed;
-        }
-
-        hitSound.Play();
+            }
     }
 
     private void Update() {
         if(transform.position.y < -98){
             ballPosition.x = playerObject.transform.position.x;
-            ballPosition.y = -90;
+            ballPosition.y = -80;
             transform.position = ballPosition;
+            GetComponent<Rigidbody2D>().velocity = Vector2.up * movementSpeed;
         }
     }
 }

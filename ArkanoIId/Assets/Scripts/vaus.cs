@@ -8,7 +8,6 @@ public class vaus : MonoBehaviour
 
     private void FixedUpdate() {
         float horizontal = Input.GetAxisRaw("Horizontal");     //  Get the player's horizontal input
-
         GetComponent<Rigidbody2D>().velocity = Vector2.right * horizontal * movementSpeed;
     }
 }
