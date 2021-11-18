@@ -11,11 +11,11 @@ public class GameSession : MonoBehaviour
     [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] int startLives = 3;
 
-    int currentLives;
+    public int currentLives;
     int currentScore;
     int currentHighScore;
 
-    private void Awake() {
+/*    private void Awake() {
         int instanceCount = FindObjectsOfType<GameSession>().Length;
         if(instanceCount > 1){
             Destroy(gameObject);
@@ -23,7 +23,7 @@ public class GameSession : MonoBehaviour
         else{
             DontDestroyOnLoad(gameObject);
         }
-    }
+    }*/
 
     private void Start() {
         currentLives = startLives;
@@ -37,7 +37,7 @@ public class GameSession : MonoBehaviour
 
         if(balls.Length <= 0){
             DecreaseLives();
-//            GameObject.FindGameObjectWithTag("Ball").GetComponent<ball>().ResetBall();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<vaus>().ResetBall();
         }
     }
 
