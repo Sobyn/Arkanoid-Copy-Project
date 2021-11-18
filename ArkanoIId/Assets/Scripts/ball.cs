@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ball : MonoBehaviour
 {
-    public float movementSpeed = 100f;
+    public float ballSpeed = 100f;
     public AudioSource hitSound;
     public GameObject playerObject;
     private Vector2 ballPosition;
@@ -12,25 +12,28 @@ public class ball : MonoBehaviour
         return(ballPos.x - vausPos.x) / vausWidth;}
 
     void Start(){
-        GetComponent<Rigidbody2D>().velocity = Vector2.up * movementSpeed;
+        GetComponent<Rigidbody2D>().velocity = Vector2.up * ballSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        hitSound.Play();
+        if(other.gameObject.tag == "Block"){
+            hitSound.Play();            
+        }
+
 
         if(other.gameObject.name == "vaus"){
             float x = hitLocation(transform.position, other.transform.position, other.collider.bounds.size.x);
             Vector2 direction = new Vector2(x,1).normalized;
-            GetComponent<Rigidbody2D>().velocity = direction * movementSpeed;
+            GetComponent<Rigidbody2D>().velocity = direction * ballSpeed;
             }
     }
 
-    private void Update() {
+/*    private void Update() {
         if(transform.position.y < -98){
             ballPosition.x = playerObject.transform.position.x;
             ballPosition.y = -80;
             transform.position = ballPosition;
-            GetComponent<Rigidbody2D>().velocity = Vector2.up * movementSpeed;
+            GetComponent<Rigidbody2D>().velocity = Vector2.up * ballSpeed;
         }
-    }
+    }*/
 }
