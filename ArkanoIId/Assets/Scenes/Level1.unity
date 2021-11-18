@@ -5182,6 +5182,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766362052}
   m_CullTransparentMesh: 1
+--- !u!1 &777011677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 492535163722048346, guid: a656dc560389ca14ba1ab892ba255442, type: 3}
+  m_PrefabInstance: {fileID: 492535163237444700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &777011681
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777011677}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 49392437dc1628846b04246f55299b17, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.5303736, y: 0.12239456}
+  serializedVersion: 2
+  m_Radius: 2.8368053
 --- !u!1 &792191515
 GameObject:
   m_ObjectHideFlags: 0
@@ -13565,5 +13586,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ball
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 492535163722048347, guid: a656dc560389ca14ba1ab892ba255442, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a656dc560389ca14ba1ab892ba255442, type: 3}
