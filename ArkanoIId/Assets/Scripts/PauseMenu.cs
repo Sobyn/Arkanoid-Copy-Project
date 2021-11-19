@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject gameOverUI;
+    public GameObject gameWinUI;
 
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Escape)){
@@ -28,7 +29,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     void Pause(){
-        if(gameOverUI.GetComponent<GameOverMenu>().gameIsOver == false){
+        if(gameOverUI.GetComponent<GameOverMenu>().gameIsOver == false && 
+        gameWinUI.GetComponent<GameWinMenu>().gameIsWon == false){
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             gameIsPaused = true;            

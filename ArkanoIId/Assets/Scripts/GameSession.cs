@@ -11,6 +11,8 @@ public class GameSession : MonoBehaviour
     [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] int startLives = 3;
 
+    public GameObject canvas;
+
     public int currentLives;
     int currentScore;
     int currentHighScore;
@@ -27,6 +29,7 @@ public class GameSession : MonoBehaviour
 
     private void Start() {
         currentLives = startLives;
+        Time.timeScale = 1f;
     }
 
     private void Update() {
@@ -34,10 +37,14 @@ public class GameSession : MonoBehaviour
         scoreText.text = currentScore.ToString();
 
         var balls = GameObject.FindGameObjectsWithTag("Ball");
-
-        if(balls.Length <= 0){
+        if(balls.Length == 0){
             DecreaseLives();
             GameObject.FindGameObjectWithTag("Player").GetComponent<vaus>().ResetBall();
+        }
+
+        var blocks = GameObject.FindGameObjectsWithTag("Block");
+        if(blocks.Length == 0){
+            GameWin();
         }
     }
 
@@ -53,6 +60,10 @@ public class GameSession : MonoBehaviour
     }
 
     private void GameOver(){
+        canvas.GetComponent<GameOverMenu>().GameOver();
+    }
 
+    private void GameWin(){
+        canvas.GetComponent<GameWinMenu>().GameWin();
     }
 }

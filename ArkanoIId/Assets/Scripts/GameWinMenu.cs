@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverMenu : MonoBehaviour
+public class GameWinMenu : MonoBehaviour
 {
-    public bool gameIsOver = false;
-    public GameObject gameOverMenuUI;
+    public bool gameIsWon = false;
+    public GameObject gameWinUI;
     public GameObject gameSession;
 
     public void Restart(){
-        gameOverMenuUI.SetActive(false);
-        gameIsOver = false;
+        gameWinUI.SetActive(false);
+        gameIsWon = false;
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
         Time.timeScale = 1f;
     }
 
-    public void GameOver(){
-        gameOverMenuUI.SetActive(true);
+    public void GameWin(){
+        gameWinUI.SetActive(true);
         Time.timeScale = 0f;
-        gameIsOver = true;
+        gameIsWon = true;
         gameSession.GetComponent<GameSession>().currentLives = 3;
     }
 
