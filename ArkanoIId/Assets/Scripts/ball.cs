@@ -16,10 +16,9 @@ public class ball : MonoBehaviour
     // -1  -0.5  0  0.5   1  <- x value
     // ====================  <- platform
     //
-
-    float hitLocation(Vector2 ballPos, Vector2 vausPos, float vausWidth){
-        //  (Return ballpos.x - vausPos.x to get the relative position)
-        return(ballPos.x - vausPos.x) / vausWidth;}
+    float hitLocation(Vector2 ballPos, Vector2 vausPos, float vausWidth)
+        //  (Return ballpos.x - vausPos.x to get the relative position, and divide by platform width)
+        {return(ballPos.x - vausPos.x) / vausWidth;}
 
     void Start(){
         GetComponent<Rigidbody2D>().velocity = Vector2.up * ballSpeed;
@@ -32,6 +31,7 @@ public class ball : MonoBehaviour
 
         //  When the ball hits the platform:
         if(other.gameObject.name == "vaus")
+
             //  Calculate hit factor (where on the platform did the ball land?)
             {float x = hitLocation(transform.position, other.transform.position, other.collider.bounds.size.x);
 
@@ -51,4 +51,5 @@ public class ball : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = Vector2.up * ballSpeed;
         }
     }*/
+
 }
