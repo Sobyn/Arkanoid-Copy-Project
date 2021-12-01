@@ -8,7 +8,17 @@ public class ball : MonoBehaviour
     public AudioSource hitSound;
     public GameObject playerObject;
     private Vector2 ballPosition;
+
+    //  Below, we retrieve the ball's position relative to the 
+    //  platform by dividing the ball's position with the player's width
+        // ascii art example:
+    //
+    // -1  -0.5  0  0.5   1  <- x value
+    // ====================  <- platform
+    //
+
     float hitLocation(Vector2 ballPos, Vector2 vausPos, float vausWidth){
+        //  (Return ballpos.x - vausPos.x to get the relative position)
         return(ballPos.x - vausPos.x) / vausWidth;}
 
     void Start(){
@@ -20,10 +30,15 @@ public class ball : MonoBehaviour
             hitSound.Play();            
         }
 
+        //  When the ball hits the platform:
+        if(other.gameObject.name == "vaus")
+            //  Calculate hit factor (where on the platform did the ball land?)
+            {float x = hitLocation(transform.position, other.transform.position, other.collider.bounds.size.x);
 
-        if(other.gameObject.name == "vaus"){
-            float x = hitLocation(transform.position, other.transform.position, other.collider.bounds.size.x);
+            //  Calculate the new direction, and set length to 1
             Vector2 direction = new Vector2(x,1).normalized;
+
+            //  Set ball's new direction and multiply with speed
             GetComponent<Rigidbody2D>().velocity = direction * ballSpeed;
             }
     }
